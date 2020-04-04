@@ -1,4 +1,4 @@
-package siIngle_threaded;
+package Socket_SERVER;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,6 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
+
 
 class QuoteService{
     Map<String, String> productInfo = new HashMap<String, String>();
@@ -64,7 +65,6 @@ class ServiceThread extends Thread{
         }
     }
 }
-
 public class Server {
 
     public static void main(String[] args) throws IOException {
@@ -85,5 +85,4 @@ public class Server {
         }
 
     }
-
 }
