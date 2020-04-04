@@ -1,7 +1,7 @@
-package REST.Service;
+package api.Service;
 
-import REST.Entities.Order;
-import REST.Repositories.OrderRepository;
+import api.Entities.Order;
+import api.DAL.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

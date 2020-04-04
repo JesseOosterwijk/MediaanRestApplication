@@ -1,7 +1,7 @@
-package REST.Controllers;
+package api.Controllers;
 
-import REST.Entities.Meal;
-import REST.Service.MealService;
+import api.Entities.Meal;
+import api.Service.MealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;

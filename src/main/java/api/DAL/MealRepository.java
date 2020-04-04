@@ -1,4 +1,4 @@
-package REST.Repositories;
+package api.DAL;
 
 public interface MealRepository {
 }

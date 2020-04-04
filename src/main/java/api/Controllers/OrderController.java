@@ -1,7 +1,7 @@
-package REST.Controllers;
+package api.Controllers;
 
-import REST.Entities.Order;
-import REST.Service.OrderService;
+import api.Entities.Order;
+import api.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

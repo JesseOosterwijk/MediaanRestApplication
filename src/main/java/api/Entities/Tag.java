@@ -1,4 +1,4 @@
-package REST.Entities;
+package api.Entities;
 
 import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -11,11 +11,10 @@ import java.util.UUID;
 
 @EntityListeners({AuditingEntityListener.class})
 @Entity
-@Table(name = "meal")
+@Table(name = "tag")
 @Data
-public class Meal {
+public class Tag {
     @Id
     private UUID id;
     private String name;
-    private double Price;
 }

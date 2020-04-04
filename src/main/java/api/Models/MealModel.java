@@ -1,6 +1,6 @@
-package REST.Models;
+package api.Models;
 
-import REST.Entities.Tag;
+import api.Entities.Tag;
 
 import java.util.ArrayList;
 import java.util.UUID;

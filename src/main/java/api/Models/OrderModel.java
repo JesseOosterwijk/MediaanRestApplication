@@ -1,4 +1,4 @@
-package REST.Models;
+package api.Models;
 
 public class OrderModel {
 }

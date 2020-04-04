@@ -1,6 +1,6 @@
-package REST.Repositories;
+package api.DAL;
 
-import REST.Entities.Order;
+import api.Entities.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

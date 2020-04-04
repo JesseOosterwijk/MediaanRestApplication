@@ -1,7 +1,7 @@
-package REST.Service;
+package api.Service;
 
-import REST.Entities.Meal;
-import REST.Repositories.MealRepository;
+import api.Entities.Meal;
+import api.DAL.MealRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
