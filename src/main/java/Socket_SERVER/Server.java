@@ -1,4 +1,4 @@
-package siIngle_threaded;
+package Socket_SERVER;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,7 +41,7 @@ class ServiceThread extends Thread{
             OutputStream out = sock.getOutputStream();
 
             System.out.println("Waiting for product info from client...");
-            byte request[] = new byte[100];
+            byte[] request = new byte[100];
             in.read(request);
             String product = new String(request).trim();
 
@@ -65,11 +65,10 @@ class ServiceThread extends Thread{
     }
 }
 
+@SuppressWarnings("InfiniteLoopStatement")
 public class Server {
 
     public static void main(String[] args) throws IOException {
-
-
 
         ServerSocket serSocket = new ServerSocket(9999);
 

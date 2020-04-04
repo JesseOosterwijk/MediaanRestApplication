@@ -1,4 +1,4 @@
-package siIngle_threaded;
+package Socket_CLIENT;
 
 import java.io.IOException;
 import java.io.InputStream;
