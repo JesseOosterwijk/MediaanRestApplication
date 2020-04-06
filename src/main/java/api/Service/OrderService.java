@@ -4,7 +4,8 @@ import api.Entities.Order;
 import api.DAL.OrderRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class OrderService {
@@ -14,7 +15,7 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public ArrayList<Order> getOrderedFood() {
-        return new ArrayList<Order>();
+    public Optional<Order> getOrderedFood(UUID id) {
+        return orderRepository.findOrderById(id);
     }
 }

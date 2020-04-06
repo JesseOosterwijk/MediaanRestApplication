@@ -1,11 +1,12 @@
 package api.Controllers;
 
-import api.Entities.Order;
+import api.Models.OrderModel;
 import api.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/ipad")
@@ -17,10 +18,10 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/orderedfood")
-    public ArrayList<Order> GetOrderFromIPad() {
-        ArrayList<Order> orderList = orderService.getOrderedFood();
-        return orderList;
+    public ResponseEntity GetOrderFromIPad(@Valid @RequestBody OrderModel orderModel) {
+        return ResponseEntity.ok(orderModel);
     }
 
 }

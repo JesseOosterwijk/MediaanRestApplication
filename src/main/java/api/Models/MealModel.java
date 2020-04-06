@@ -1,25 +1,19 @@
 package api.Models;
 
-import api.Entities.Tag;
+import javax.validation.constraints.NotEmpty;
 
-import java.util.ArrayList;
-import java.util.UUID;
 
 public class MealModel {
 
-    private UUID MealId;
+    @NotEmpty(message = "please enter price")
     private int Price;
-    private String Name;
-    private String Description;
-    private ArrayList<Tag> Allergens;
 
-    public MealModel(UUID mealId, int price, String name, String description, ArrayList<Tag> allergens) {
-        MealId = mealId;
-        Price = price;
-        Name = name;
-        Description = description;
-        Allergens = allergens;
-    }
+    @NotEmpty(message = "please enter name")
+    private String Name;
+
+    @NotEmpty(message = "please enter description")
+    private String Description;
+
 
     public int getPrice() {
         return Price;
@@ -43,13 +37,5 @@ public class MealModel {
 
     public void setDescription(String description) {
         Description = description;
-    }
-
-    public ArrayList<Tag> getAllergens() {
-        return Allergens;
-    }
-
-    public void setAllergens(ArrayList<Tag> allergens) {
-        Allergens = allergens;
     }
 }
