@@ -1,17 +1,18 @@
 package api.Models;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 public class MealModel {
 
-    @NotEmpty(message = "please enter price")
+    @NotNull(message = "please enter price")
     private int Price;
 
     @NotEmpty(message = "please enter name")
     private String Name;
 
-    @NotEmpty(message = "please enter description")
+    //@NotEmpty(message = "please enter description")
     private String Description;
 
 

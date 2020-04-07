@@ -1,13 +1,10 @@
 package api.Service;
 
-import api.Entities.Meal;
 import api.DAL.MealRepository;
+import api.Entities.Meal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-import java.util.ArrayList;
-import java.util.UUID;
 
 @Service
 public class MealService {
@@ -17,7 +14,11 @@ public class MealService {
     public MealService(MealRepository mealRepository) { this.mealRepository = mealRepository;
     }
 
-    public Optional<ArrayList<Meal>> getAllMeals(UUID id) {
-        return mealRepository.findAllMeals(id);
+    public void addMeal(Meal meal) {
+        try {
+            mealRepository.addMeal(meal);
+        } catch(Exception e) {
+            throw e;
+        }
     }
 }

@@ -1,15 +1,17 @@
 package api.DAL;
 
 import api.Entities.Meal;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.UUID;
-
 @Repository
-public interface MealRepository extends JpaRepository<Meal, UUID> {
-    Optional<Meal> findMealByName(String name);
-    Optional<ArrayList<Meal>> findAllMeals(UUID id);
+public class MealRepository {
+    private final JdbcTemplate con;
+
+    public MealRepository(JdbcTemplate con) { this.con = con; }
+
+    public void addMeal(Meal meal) {
+        String query = "INSERT INTO meal (Name, Price) VALUES (?,?)";
+        con.update(query, meal.getName(), meal.getPrice());
+    }
 }
