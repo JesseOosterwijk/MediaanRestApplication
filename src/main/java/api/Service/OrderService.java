@@ -2,13 +2,11 @@ package api.Service;
 
 import api.Entities.Order;
 import api.DAL.OrderRepository;
-import org.springframework.stereotype.Service;
 
-@Service
 public class OrderService {
     private final OrderRepository orderRepository;
 
-    private OrderService(OrderRepository orderRepository) {
+    public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
 
