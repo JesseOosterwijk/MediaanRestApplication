@@ -1,18 +1,24 @@
 package api.Entities;
 
-import java.util.UUID;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "Order")
 public class Order {
 
-    private UUID id;
+    @Id
+    @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    private int sessionId;
+    @Column(name = "SessionId")
+    private long sessionId;
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    public int getSessionId() {
+    public long getSessionId() {
         return sessionId;
     }
 }

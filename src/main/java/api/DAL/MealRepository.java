@@ -1,16 +1,10 @@
 package api.DAL;
 
 import api.Entities.Meal;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public class MealRepository {
+@Repository
+public interface MealRepository extends JpaRepository<Meal, Integer> {
 
-    private JdbcTemplate connection;
-
-    public MealRepository(JdbcTemplate con) { this.connection = con; }
-
-    public void addMeal(Meal meal) {
-        String query = "INSERT INTO meal (Name, Price) VALUES (?,?)";
-        connection.update(query, meal.getName(), meal.getPrice());
-    }
 }

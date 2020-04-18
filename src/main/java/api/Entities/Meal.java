@@ -1,11 +1,25 @@
 package api.Entities;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
+@Entity
+@Table(name = "Meal")
 public class Meal {
+
+    @Id
+    @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
+
+    @NotBlank
+    @Column(name = "Name")
     private String name;
-    private double Price;
+
+    @NotBlank
+    @Column(name = "Price")
+    private double price;
 
     public UUID getId() {
         return id;
@@ -16,7 +30,7 @@ public class Meal {
     }
 
     public double getPrice() {
-        return Price;
+        return price;
     }
 
     public void setName(String name) {
@@ -24,6 +38,6 @@ public class Meal {
     }
 
     public void setPrice(double price) {
-        Price = price;
+        this.price = price;
     }
 }
