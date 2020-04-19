@@ -13,7 +13,7 @@ function setConnected(connected) {
 }
 
 function connect() {
-    var socket = new SockJS('/gs-guide-websocket');
+    var socket = new SockJS('/mediaan-ws');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         setConnected(true);
@@ -33,7 +33,7 @@ function disconnect() {
 }
 
 function sendName() {
-    stompClient.send("/app/order", {}, JSON.stringify({'name': $("#name").val()}));
+    stompClient.send("/topic/orders", {}, JSON.stringify({'tableNr': $("#tableNr").val(), 'meal': $("#meal").val()}));
 }
 
 function showGreeting(order) {
