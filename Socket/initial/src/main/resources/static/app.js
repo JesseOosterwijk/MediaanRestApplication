@@ -13,14 +13,12 @@ function setConnected(connected) {
 }
 
 function connect() {
-    var socket = new SockJS('/gs-guide-websocket');
+    var socket = new SockJS('/mediaan-ws');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/orders', function (receivedOrder) {
-            showGreeting(JSON.parse(receivedOrder.body).content);
-        });
+        stompClient.subscribe('/kitchen', function (receivedOrder) { showOrder(receivedOrder); });
     });
 }
 
@@ -32,13 +30,18 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-function sendName() {
-    stompClient.send("/app/order", {}, JSON.stringify({'name': $("#name").val()}));
+function showOrder(order) {
+	const receivedOrder = JSON.parse(order.body);
+	
+	let orderString = "<p><b>Table " + receivedOrder.tableNumber + "</b></p><ul>";
+	for(const orderItem of receivedOrder.dishes){
+		orderString += "<li>" + orderItem.name + "</li>";
+	}
+	orderString += "</ul><hr style='width: 120px; float: left; background-color: black; height: 2px;'>";
+	$("#orders").append(orderString);
 }
 
-function showGreeting(order) {
-    $("#orders").append("<tr><td>" + order + "</td></tr>");
-}
+connect();
 
 $(function () {
     $("form").on('submit', function (e) {
@@ -46,5 +49,5 @@ $(function () {
     });
     $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
-    $( "#send" ).click(function() { sendName(); });
+// $( "#send" ).click(function() { sendName(); });
 });

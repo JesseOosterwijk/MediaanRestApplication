@@ -1,4 +1,4 @@
-package com.example.messagingstompwebsocket;
+package com.mediaan.websocket;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
