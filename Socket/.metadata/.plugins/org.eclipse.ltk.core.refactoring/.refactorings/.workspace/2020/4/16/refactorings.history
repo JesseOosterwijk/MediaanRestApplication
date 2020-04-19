@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;gs-messaging-stomp-websocket-master&apos;" deleteContents="false" description="Delete resource &apos;gs-messaging-stomp-websocket-master&apos;" element1="/gs-messaging-stomp-websocket-master" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1587125825777"/>&#x0A;<refactoring comment="Delete resource &apos;complete&apos;" deleteContents="false" description="Delete resource &apos;complete&apos;" element1="/complete" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1587125828171"/>
+</session>
