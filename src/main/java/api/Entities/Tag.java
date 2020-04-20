@@ -1,8 +1,18 @@
 package api.Entities;
 
-import java.util.UUID;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
+@Entity
+@Table(name = "Tag")
 public class Tag {
-    private UUID id;
+
+    @Id
+    @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @NotBlank
+    @Column(name = "Name")
     private String name;
 }
