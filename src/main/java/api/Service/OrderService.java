@@ -1,5 +1,6 @@
 package api.Service;
 
+import api.Entities.Meal;
 import api.Entities.Order;
 import api.DAL.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;

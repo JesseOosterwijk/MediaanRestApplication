@@ -1,6 +1,7 @@
 package api.Entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,8 +16,8 @@ public class Order {
     @Column(name = "SessionId")
     private long SessionId;
 
-    @ManyToMany(mappedBy = "Orders")
-    private Set<Meal> Meals;
+    @ManyToMany(mappedBy = "Orders", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<Meal> Meals = new HashSet<>();
 
     public void addMeal(Meal meal) {
         Meals.add(meal);

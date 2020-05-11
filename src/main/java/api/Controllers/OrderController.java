@@ -1,8 +1,10 @@
 package api.Controllers;
 
+import api.Entities.Order;
 import api.Models.OrderModel;
 import api.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +22,21 @@ public class OrderController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/orderedfood")
-    public ResponseEntity GetOrderFromIPad(@Valid @RequestBody OrderModel orderModel) {
-        return ResponseEntity.ok(orderModel);
+    public ResponseEntity GetOrderFromIPad(@Valid @RequestBody Order order) {
+        return ResponseEntity.ok(order);
+    }
+
+    @PostMapping("/orderFood")
+    public ResponseEntity SaveOrder(@Valid @RequestBody Order order){
+        try {
+            orderService.saveOrder(order);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
 }

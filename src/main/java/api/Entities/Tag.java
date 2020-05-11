@@ -18,7 +18,7 @@ public class Tag {
     @Column(name = "Name")
     private String name;
 
-    @ManyToMany(mappedBy = "Tags")
+    @ManyToMany(mappedBy = "Tags", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Meal> Meals = new HashSet<>();
 
     public int getId() {

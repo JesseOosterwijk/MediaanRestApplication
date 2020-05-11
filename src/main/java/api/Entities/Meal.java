@@ -23,7 +23,7 @@ public class Meal {
     @Column(name = "Price")
     private double price;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "meal_order",
             joinColumns = {@JoinColumn(name = "MealId")},
@@ -31,12 +31,13 @@ public class Meal {
     )
     private Set<Order> Orders = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "recipe_tag",
             joinColumns = {@JoinColumn(name = "MealId")},
             inverseJoinColumns = {@JoinColumn(name = "TagId")}
     )
+
     private Set<Tag> Tags = new HashSet<>();
 
     public UUID getId() {
@@ -65,5 +66,9 @@ public class Meal {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        Orders = orders;
     }
 }
