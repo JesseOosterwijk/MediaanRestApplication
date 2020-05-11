@@ -1,6 +1,7 @@
 package api.Entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Order")
@@ -12,13 +13,33 @@ public class Order {
     private long id;
 
     @Column(name = "SessionId")
-    private long sessionId;
+    private long SessionId;
+
+    @ManyToMany(mappedBy = "Orders")
+    private Set<Meal> Meals;
+
+    public void addMeal(Meal meal) {
+        Meals.add(meal);
+        meal.getOrders().add(this);
+    }
+
+    public Set<Meal> getMeals() {
+        return Meals;
+    }
 
     public long getId() {
         return id;
     }
 
     public long getSessionId() {
-        return sessionId;
+        return SessionId;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setSessionId(long sessionId) {
+        SessionId = sessionId;
     }
 }

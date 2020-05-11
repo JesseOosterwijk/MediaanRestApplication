@@ -2,6 +2,8 @@ package api.Entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -21,6 +23,22 @@ public class Meal {
     @Column(name = "Price")
     private double price;
 
+    @ManyToMany
+    @JoinTable(
+            name = "meal_order",
+            joinColumns = {@JoinColumn(name = "MealId")},
+            inverseJoinColumns = {@JoinColumn(name = "OrderID")}
+    )
+    private Set<Order> Orders = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "recipe_tag",
+            joinColumns = {@JoinColumn(name = "MealId")},
+            inverseJoinColumns = {@JoinColumn(name = "TagId")}
+    )
+    private Set<Tag> Tags = new HashSet<>();
+
     public UUID getId() {
         return id;
     }
@@ -31,6 +49,14 @@ public class Meal {
 
     public double getPrice() {
         return price;
+    }
+
+    public Set<Order> getOrders() {
+        return Orders;
+    }
+
+    public Set<Tag> getTags() {
+        return Tags;
     }
 
     public void setName(String name) {
