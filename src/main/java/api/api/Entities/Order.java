@@ -1,11 +1,13 @@
-package api.Entities;
+package api.api.Entities;
+
+import api.Entities.Meal;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Order")
+@Table(name = "Orders")
 public class Order {
 
     @Id
@@ -16,7 +18,12 @@ public class Order {
     @Column(name = "sessions")
     private long SessionId;
 
-    @ManyToMany(mappedBy = "Orders", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinTable(
+            name = "meal_order",
+            joinColumns = {@JoinColumn(name = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "meal_id")}
+    )
     private Set<Meal> Meals = new HashSet<>();
 
     public void addMeal(Meal meal) {
