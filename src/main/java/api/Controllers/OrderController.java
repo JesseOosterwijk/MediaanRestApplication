@@ -25,7 +25,7 @@ public class OrderController {
         return ResponseEntity.ok(order);
     }
 
-    @PostMapping("/orderFood")
+    @PostMapping("/addorder")
     public ResponseEntity SaveOrder(@Valid @RequestBody Order order){
         try {
             orderService.saveOrder(order);

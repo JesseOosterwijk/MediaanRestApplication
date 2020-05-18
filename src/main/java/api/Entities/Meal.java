@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "Meal")
@@ -13,7 +12,7 @@ public class Meal {
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private int id;
 
     @NotBlank
     @Column(name = "Name")
@@ -23,24 +22,19 @@ public class Meal {
     @Column(name = "Price")
     private double price;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinTable(
-            name = "meal_order",
-            joinColumns = {@JoinColumn(name = "MealId")},
-            inverseJoinColumns = {@JoinColumn(name = "OrderID")}
-    )
+    @ManyToMany(mappedBy = "Meals", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Set<Order> Orders = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "recipe_tag",
-            joinColumns = {@JoinColumn(name = "MealId")},
-            inverseJoinColumns = {@JoinColumn(name = "TagId")}
+            joinColumns = {@JoinColumn(name = "meal_id")},
+            inverseJoinColumns = {@JoinColumn(name = "tag_id")}
     )
 
     private Set<Tag> Tags = new HashSet<>();
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
