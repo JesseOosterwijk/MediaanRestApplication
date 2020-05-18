@@ -30,6 +30,7 @@ function disconnect() {
     console.log("Disconnected");
 }
 
+// Receive method
 function showOrder(order) {
 	const receivedOrder = JSON.parse(order.body);
 	
