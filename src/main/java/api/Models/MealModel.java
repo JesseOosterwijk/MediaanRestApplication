@@ -2,25 +2,38 @@ package api.Models;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 
 public class MealModel {
 
-    @NotNull(message = "please enter price")
-    private int Price;
+    private int Id;
 
-    @NotEmpty(message = "please enter name")
+    private double Price;
+
     private String Name;
 
-    //@NotEmpty(message = "please enter description")
-    private String Description;
+    public MealModel(){}
 
+    public MealModel(int id, double price, String name) {
+        Id = id;
+        Price = price;
+        Name = name;
+    }
 
-    public int getPrice() {
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        this.Id = id;
+    }
+
+    public double getPrice() {
         return Price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         Price = price;
     }
 
@@ -30,13 +43,5 @@ public class MealModel {
 
     public void setName(String name) {
         Name = name;
-    }
-
-    public String getDescription() {
-        return Description;
-    }
-
-    public void setDescription(String description) {
-        Description = description;
     }
 }

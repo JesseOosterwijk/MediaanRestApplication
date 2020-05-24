@@ -7,15 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class MealController {
+
     private final MealService mealService;
 
     @Autowired
@@ -23,7 +22,6 @@ public class MealController {
         this.mealService = mealService;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping(value = "/overview", produces = {
             MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_VALUE })
@@ -31,7 +29,6 @@ public class MealController {
         return ResponseEntity.ok(mealModel);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping(value = "/addmeal")
     public ResponseEntity addMeal(@Valid @RequestBody MealModel mealModel) {
         try {
@@ -46,5 +43,13 @@ public class MealController {
         }
     }
 
-
+    @GetMapping(value = "/menu")
+    public ResponseEntity getMeals(){
+        try {
+            return ResponseEntity.ok(mealService.GetAllMeals());
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+    }
 }
