@@ -6,20 +6,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Tag")
+@Table(name = "tag")
 public class Tag {
 
     @Id
-    @Column(name = "Id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotBlank
-    @Column(name = "Name")
+    @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "Tags", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private Set<Meal> Meals = new HashSet<>();
+    @ManyToMany(mappedBy = "tags", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private Set<Meal> meals = new HashSet<>();
 
     public int getId() {
         return id;
@@ -30,18 +30,19 @@ public class Tag {
     }
 
     public Set<Meal> getMeals() {
-        return Meals;
+        return meals;
     }
 
-    public void addMeal(Meal meal) {
-        Meals.add(meal);
-        meal.getTags().add(this);
-    }
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void addMeal(Meal meal) {
+        meals.add(meal);
+        meal.getTags().add(this);
     }
 }

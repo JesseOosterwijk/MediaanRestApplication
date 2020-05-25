@@ -6,35 +6,44 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Orders")
+@Table(name = "orders")
 public class Order {
 
     @Id
-    @Column(name = "Id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
-    @Column(name = "sessions")
-    private long SessionId;
+    @Column(name = "session_id")
+    private int SessionId;
 
-    @Column(name = "OrderTime")
+    @Column(name = "order_time")
     private LocalTime orderTime;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinTable(
-            name = "meal_order",
-            joinColumns = {@JoinColumn(name = "order_id")},
-            inverseJoinColumns = {@JoinColumn(name = "meal_id")}
-    )
-    private Set<Meal> Meals = new HashSet<>();
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<OrderMeal> orderMeals = new HashSet<>();
 
+/*
     public void addMeal(Meal meal) {
         Meals.add(meal);
         meal.getOrders().add(this);
     }
+*/
 
-    public Set<Meal> getMeals() {
-        return Meals;
+    public LocalTime getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(LocalTime orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public Set<OrderMeal> getOrderMeals() {
+        return orderMeals;
+    }
+
+    public void setOrderMeals(Set<OrderMeal> meals) {
+        this.orderMeals = meals;
     }
 
     public long getId() {
@@ -45,11 +54,11 @@ public class Order {
         return SessionId;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public void setSessionId(long sessionId) {
+    public void setSessionId(int sessionId) {
         SessionId = sessionId;
     }
 }

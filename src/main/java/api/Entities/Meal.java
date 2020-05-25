@@ -1,5 +1,7 @@
 package api.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -7,28 +9,29 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Meal")
+@Table(name = "meals")
 public class Meal {
 
     @Id
-    @Column(name = "Id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotBlank
-    @Column(name = "Name")
+    @Column(name = "name")
     private String name;
 
     @NotNull
-    @Column(name = "Price")
+    @Column(name = "price")
     private double price;
 
     @NotNull
-    @Column(name = "Description")
+    @Column(name = "description")
     private String description;
 
-    @ManyToMany(mappedBy = "Meals", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    private Set<Order> Orders = new HashSet<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "meal")
+    private Set<OrderMeal> orderMeals = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
@@ -36,8 +39,15 @@ public class Meal {
             joinColumns = {@JoinColumn(name = "meal_id")},
             inverseJoinColumns = {@JoinColumn(name = "tag_id")}
     )
+    private Set<Tag> tags = new HashSet<>();
 
-    private Set<Tag> Tags = new HashSet<>();
+    public Set<OrderMeal> getOrderMeals() {
+        return orderMeals;
+    }
+
+    public void setOrderMeals(Set<OrderMeal> orderMeals) {
+        this.orderMeals = orderMeals;
+    }
 
     public int getId() {
         return id;
@@ -51,12 +61,8 @@ public class Meal {
         return price;
     }
 
-    public Set<Order> getOrders() {
-        return Orders;
-    }
-
     public Set<Tag> getTags() {
-        return Tags;
+        return tags;
     }
 
     public void setName(String name) {
@@ -65,10 +71,6 @@ public class Meal {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        Orders = orders;
     }
 
     public void setId(int id) {
@@ -84,6 +86,6 @@ public class Meal {
     }
 
     public void setTags(Set<Tag> tags) {
-        Tags = tags;
+        tags = tags;
     }
 }

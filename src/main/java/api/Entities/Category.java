@@ -6,18 +6,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Category")
+@Table(name = "category")
 public class Category {
 
     @Id
-    @Column(name = "Id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotNull
-    @Column(name = "Name")
+    @Column(name = "name")
     private String name;
 
     @OneToMany
-    private Set<Meal> Meals = new HashSet<>();
+    private Set<Meal> meals = new HashSet<>();
 }
