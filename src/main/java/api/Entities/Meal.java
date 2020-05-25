@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,9 +22,13 @@ public class Meal {
     @Column(name = "Name")
     private String name;
 
-    @NotBlank
+    @NotNull
     @Column(name = "Price")
     private double price;
+
+    @NotNull
+    @Column(name = "Description")
+    private String description;
 
     @ManyToMany(mappedBy = "Meals", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Set<Order> Orders = new HashSet<>();
@@ -67,5 +72,21 @@ public class Meal {
 
     public void setOrders(Set<Order> orders) {
         Orders = orders;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        Tags = tags;
     }
 }

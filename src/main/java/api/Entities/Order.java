@@ -1,6 +1,7 @@
 package api.Entities;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,9 @@ public class Order {
 
     @Column(name = "sessions")
     private long SessionId;
+
+    @Column(name = "OrderTime")
+    private LocalTime orderTime;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinTable(
