@@ -15,10 +15,10 @@ public class Order {
     private long id;
 
     @Column(name = "sessions")
-    private long SessionId;
+    private long sessions;
 
-    @Column(name = "OrderTime")
-    private LocalTime orderTime;
+    @Column(name = "order_time")
+    private LocalTime order_time;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinTable(
@@ -42,7 +42,7 @@ public class Order {
     }
 
     public long getSessionId() {
-        return SessionId;
+        return sessions;
     }
 
     public void setId(long id) {
@@ -50,6 +50,26 @@ public class Order {
     }
 
     public void setSessionId(long sessionId) {
-        SessionId = sessionId;
+        sessions = sessionId;
+    }
+
+    public long getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(long sessions) {
+        this.sessions = sessions;
+    }
+
+    public LocalTime getOrder_time() {
+        return order_time;
+    }
+
+    public void setOrder_time(LocalTime order_time) {
+        this.order_time = order_time;
+    }
+
+    public void setMeals(Set<Meal> meals) {
+        Meals = meals;
     }
 }

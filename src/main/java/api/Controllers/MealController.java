@@ -1,7 +1,9 @@
 package api.Controllers;
 
+import api.Entities.Category;
 import api.Entities.Meal;
 import api.Models.MealModel;
+import api.Service.CategoryService;
 import api.Service.MealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 @RestController
 public class MealController {
@@ -38,7 +43,19 @@ public class MealController {
             Meal newMeal = new Meal();
             newMeal.setName(mealModel.getName());
             newMeal.setPrice(mealModel.getPrice());
-            mealService.addMeal(newMeal);
+            mealService.AddMeal(newMeal);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping(value = "/getmealsbycategory")
+    public ResponseEntity GetMealsByCategory(@Valid @RequestBody Category category) {
+        try {
+            Optional<Set<Meal>> meals = mealService.GetAllMealsByCategory(category);
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception ex) {
             ex.printStackTrace();

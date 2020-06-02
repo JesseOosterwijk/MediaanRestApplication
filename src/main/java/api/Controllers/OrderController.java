@@ -28,7 +28,7 @@ public class OrderController {
     @PostMapping("/addorder")
     public ResponseEntity SaveOrder(@Valid @RequestBody Order order){
         try {
-            orderService.saveOrder(order);
+            orderService.SaveOrder(order);
             return new ResponseEntity(HttpStatus.OK);
         }
         catch(Exception ex) {

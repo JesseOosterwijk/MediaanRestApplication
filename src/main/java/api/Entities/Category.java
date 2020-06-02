@@ -18,6 +18,6 @@ public class Category {
     @Column(name = "Name")
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "category")
     private Set<Meal> Meals = new HashSet<>();
 }

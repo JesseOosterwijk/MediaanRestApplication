@@ -36,8 +36,11 @@ public class Meal {
             joinColumns = {@JoinColumn(name = "meal_id")},
             inverseJoinColumns = {@JoinColumn(name = "tag_id")}
     )
-
     private Set<Tag> Tags = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public int getId() {
         return id;
