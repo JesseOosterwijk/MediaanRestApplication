@@ -10,5 +10,5 @@ import java.util.Set;
 
 @Repository
 public interface MealRepository extends JpaRepository<Meal, Integer> {
-    Optional<Set<Meal>> findAllByCategory(Category category);
+    Optional<Set<Meal>> findAllByCategoryId(int id);
 }

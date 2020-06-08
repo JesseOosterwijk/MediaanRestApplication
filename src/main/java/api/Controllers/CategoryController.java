@@ -1,7 +1,6 @@
 package api.Controllers;
 
 import api.Entities.Category;
-import api.Entities.Order;
 import api.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +11,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/category")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CategoryController {
     private final CategoryService categoryService;
 
@@ -20,7 +20,6 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/addcategory")
     public ResponseEntity AddNewCategory(@Valid @RequestBody Category category) {
         try {
@@ -32,12 +31,21 @@ public class CategoryController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/deletecategory")
     public ResponseEntity DeleteCategory(@Valid @RequestBody Category category) {
         try {
             categoryService.DeleteCategory(category);
             return ResponseEntity.ok(category);
+        } catch(Exception ex) {
+            ex.printStackTrace();
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/getcategories")
+    public ResponseEntity GetAllCategories() {
+        try {
+            return new ResponseEntity(categoryService.GetAllCategories(), HttpStatus.OK);
         } catch(Exception ex) {
             ex.printStackTrace();
             return new ResponseEntity(HttpStatus.BAD_REQUEST);

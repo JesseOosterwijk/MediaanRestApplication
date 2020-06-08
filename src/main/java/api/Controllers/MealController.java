@@ -9,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Optional;
@@ -52,14 +50,13 @@ public class MealController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping(value = "/getmealsbycategory")
-    public ResponseEntity GetMealsByCategory(@Valid @RequestBody Category category) {
+    @GetMapping(value = "/getmealsbycategory/{id}")
+    public Optional<Set<Meal>> GetMealsByCategory(@Valid @PathVariable int id) {
         try {
-            Optional<Set<Meal>> meals = mealService.GetAllMealsByCategory(category);
-            return new ResponseEntity(HttpStatus.OK);
+            return mealService.GetAllMealsByCategory(id);
         } catch (Exception ex) {
             ex.printStackTrace();
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            throw ex;
         }
     }
 

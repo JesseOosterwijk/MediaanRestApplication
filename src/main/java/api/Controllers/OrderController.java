@@ -35,7 +35,18 @@ public class OrderController {
             ex.printStackTrace();
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
+    }
 
+    @PostMapping("/deleteorder")
+    public ResponseEntity DeleteOrder(@Valid @RequestBody Order order){
+        try {
+            orderService.DeleteOrder(order);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

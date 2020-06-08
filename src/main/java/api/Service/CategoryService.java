@@ -6,6 +6,9 @@ import api.Entities.Meal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Set;
+
 @Service
 public class CategoryService {
     private final CategoryRepository categoryRepository;
@@ -23,9 +26,9 @@ public class CategoryService {
         }
     }
 
-    public void GetAllCategories() {
+    public List<Category> GetAllCategories() {
         try {
-            categoryRepository.findAll();
+            return categoryRepository.findAll();
         } catch(Exception e) {
             throw e;
         }

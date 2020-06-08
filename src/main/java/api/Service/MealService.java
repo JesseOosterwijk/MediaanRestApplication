@@ -34,9 +34,9 @@ public class MealService {
         }
     }
 
-    public Optional<Set<Meal>> GetAllMealsByCategory(Category category) {
+    public Optional<Set<Meal>> GetAllMealsByCategory(int id) {
         try {
-            return mealRepository.findAllByCategory(category);
+            return mealRepository.findAllByCategoryId(id);
         } catch (Exception e) {
             throw e;
         }
