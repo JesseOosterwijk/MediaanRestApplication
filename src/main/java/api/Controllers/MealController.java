@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class MealController {
     private final MealService mealService;
@@ -26,7 +27,6 @@ public class MealController {
         this.mealService = mealService;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping(value = "/overview", produces = {
             MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_VALUE })
@@ -34,7 +34,6 @@ public class MealController {
         return ResponseEntity.ok(mealModel);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping(value = "/addmeal")
     public ResponseEntity addMeal(@Valid @RequestBody MealModel mealModel) {
         try {
@@ -49,7 +48,6 @@ public class MealController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/getmealsbycategory/{id}")
     public Optional<Set<Meal>> GetMealsByCategory(@Valid @PathVariable int id) {
         try {
