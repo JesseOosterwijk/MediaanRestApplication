@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/ipad")
 public class OrderController {
     private final OrderService orderService;
@@ -19,7 +20,6 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/orderedfood")
     public ResponseEntity GetOrderFromIPad(@Valid @RequestBody Order order) {
         return ResponseEntity.ok(order);

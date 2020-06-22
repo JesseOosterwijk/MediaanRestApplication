@@ -81,7 +81,6 @@ public class Meal {
         this.name = name;
     }
 
-    @JsonIgnore
     public void setPrice(double price) {
         this.price = price;
     }
